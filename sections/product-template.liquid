@@ -1,0 +1,39 @@
+<section class="product container">
+
+  <div class="product__grid">
+
+    <div class="product__media">
+      {% for image in product.images %}
+        <img src="{{ image | image_url: width: 1200 }}" loading="lazy">
+      {% endfor %}
+    </div>
+
+    <div class="product__info">
+
+      <h1>{{ product.title }}</h1>
+
+      <p class="price">{{ product.price | money }}</p>
+
+      <form class="product-form js-product-form">
+        <select name="id">
+          {% for variant in product.variants %}
+            <option value="{{ variant.id }}">
+              {{ variant.title }}
+            </option>
+          {% endfor %}
+        </select>
+
+        <button type="submit" class="btn btn--primary">
+          Add to cart
+        </button>
+      </form>
+
+      <div class="product__desc">
+        {{ product.description }}
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

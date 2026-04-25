@@ -1,0 +1,35 @@
+<div class="cart-drawer js-cart-drawer">
+  <div class="cart-overlay js-cart-close"></div>
+
+  <div class="cart-panel">
+
+    <div class="cart-header">
+      <h2>Cart</h2>
+      <button class="js-cart-close">✕</button>
+    </div>
+
+    <div class="cart-items js-cart-items">
+      {% for item in cart.items %}
+        <div class="cart-item">
+          <img src="{{ item.image | image_url: width: 200 }}">
+          <div>
+            <p>{{ item.product.title }}</p>
+            <p>{{ item.quantity }} × {{ item.price | money }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="cart-footer">
+      <p>Total: {{ cart.total_price | money }}</p>
+      <a href="/checkout" class="btn">Checkout</a>
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cart Drawer"
+}
+{% endschema %}

@@ -1,0 +1,30 @@
+<section class="marquee">
+
+  <div class="marquee__track">
+    {% for i in (1..10) %}
+      <span class="marquee__text">
+        {{ section.settings.text }}
+      </span>
+    {% endfor %}
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "Marquee",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "default": "Free shipping on orders over $100",
+      "label": "Text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee"
+    }
+  ]
+}
+{% endschema %}

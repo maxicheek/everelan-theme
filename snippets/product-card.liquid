@@ -1,0 +1,42 @@
+<div class="product-card">
+
+  <div class="product-card__media">
+
+    <a href="{{ product.url }}">
+      <img 
+        src="{{ product.featured_image | image_url: width: 800 }}"
+        class="primary-image"
+        loading="lazy">
+
+      {% if product.images.size > 1 %}
+        <img 
+          src="{{ product.images[1] | image_url: width: 800 }}"
+          class="secondary-image"
+          loading="lazy">
+      {% endif %}
+    </a>
+
+    {% if product.compare_at_price > product.price %}
+      <span class="badge sale">Sale</span>
+    {% endif %}
+
+    {% if product.available == false %}
+      <span class="badge soldout">Sold Out</span>
+    {% endif %}
+
+    <button 
+      class="quick-add js-quick-add"
+      data-id="{{ product.variants.first.id }}">
+      Add to cart
+    </button>
+
+  </div>
+
+  <div class="product-card__info">
+    <h3>{{ product.title }}</h3>
+    <p class="price">
+      {{ product.price | money }}
+    </p>
+  </div>
+
+</div>

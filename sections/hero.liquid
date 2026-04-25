@@ -1,0 +1,74 @@
+<section class="hero">
+  <div class="hero__content">
+    <h1>{{ settings.hero_title }}</h1>
+    <p>{{ settings.hero_subtitle }}</p>
+    <a href="/collections/all" class="btn">Shop Now</a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "text", "id": "hero_title", "label": "Title" },
+    { "type": "text", "id": "hero_subtitle", "label": "Subtitle" }
+  ]
+}
+{% endschema %}
+
+<section class="hero js-hero">
+
+  {% if section.settings.video != blank %}
+    <video 
+      class="hero__media"
+      autoplay 
+      muted 
+      loop 
+      playsinline>
+      <source src="{{ section.settings.video }}" type="video/mp4">
+    </video>
+  {% else %}
+    <img 
+      src="{{ section.settings.image | image_url: width: 2000 }}" 
+      class="hero__media"
+      loading="eager">
+  {% endif %}
+
+  <div class="hero__overlay"></div>
+
+  <div class="hero__content">
+    <h1 class="hero__title animate-fade-up">
+      {{ section.settings.title }}
+    </h1>
+
+    <p class="hero__subtitle animate-fade-up delay-1">
+      {{ section.settings.subtitle }}
+    </p>
+
+    <div class="hero__buttons animate-fade-up delay-2">
+      <a href="{{ section.settings.button_link }}" class="btn btn--primary">
+        {{ section.settings.button_text }}
+      </a>
+    </div>
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Background Image" },
+    { "type": "url", "id": "video", "label": "Video URL (mp4)" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Modern Essentials" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Designed for everyday luxury" },
+    { "type": "text", "id": "button_text", "label": "Button", "default": "Shop Now" },
+    { "type": "url", "id": "button_link", "label": "Button Link" }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}

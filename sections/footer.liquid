@@ -1,0 +1,61 @@
+<footer class="footer">
+
+  <div class="footer__top container">
+
+    <div class="footer__cols">
+      <div class="footer__col">
+        <h4>{{ section.settings.col1_title }}</h4>
+        {% for link in linklists[section.settings.col1_menu].links %}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {% endfor %}
+      </div>
+
+      <div class="footer__col">
+        <h4>{{ section.settings.col2_title }}</h4>
+        {% for link in linklists[section.settings.col2_menu].links %}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {% endfor %}
+      </div>
+
+      <div class="footer__col">
+        <h4>{{ section.settings.col3_title }}</h4>
+        {% for link in linklists[section.settings.col3_menu].links %}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {% endfor %}
+      </div>
+
+      <div class="footer__col newsletter">
+        <h4>{{ section.settings.newsletter_title }}</h4>
+        <form method="post" action="/contact#contact_form" accept-charset="UTF-8">
+          <input type="hidden" name="form_type" value="customer">
+          <input type="email" name="contact[email]" placeholder="Email">
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer__bottom container">
+    <p>© {{ 'now' | date: "%Y" }} {{ shop.name }}</p>
+  </div>
+
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "text", "id": "col1_title", "default": "Shop", "label": "Column 1 Title" },
+    { "type": "link_list", "id": "col1_menu", "label": "Column 1 Menu" },
+
+    { "type": "text", "id": "col2_title", "default": "About", "label": "Column 2 Title" },
+    { "type": "link_list", "id": "col2_menu", "label": "Column 2 Menu" },
+
+    { "type": "text", "id": "col3_title", "default": "Help", "label": "Column 3 Title" },
+    { "type": "link_list", "id": "col3_menu", "label": "Column 3 Menu" },
+
+    { "type": "text", "id": "newsletter_title", "default": "Join us", "label": "Newsletter Title" }
+  ]
+}
+{% endschema %}

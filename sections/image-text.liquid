@@ -1,0 +1,47 @@
+<section class="image-text">
+
+  <div class="image-text__inner {% if section.settings.reverse %}reverse{% endif %}">
+
+    <div class="image-text__media">
+      <img 
+        src="{{ section.settings.image | image_url: width: 1600 }}"
+        loading="lazy">
+    </div>
+
+    <div class="image-text__content">
+
+      <h2 class="animate-fade-up">
+        {{ section.settings.title }}
+      </h2>
+
+      <p class="animate-fade-up delay-1">
+        {{ section.settings.text }}
+      </p>
+
+      <a href="{{ section.settings.button_link }}" 
+         class="btn animate-fade-up delay-2">
+        {{ section.settings.button_text }}
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "Image + Text",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "title", "label": "Title" },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "text", "id": "button_text", "label": "Button" },
+    { "type": "url", "id": "button_link", "label": "Link" },
+    { "type": "checkbox", "id": "reverse", "label": "Reverse layout" }
+  ],
+  "presets": [
+    { "name": "Image + Text" }
+  ]
+}
+{% endschema %}
